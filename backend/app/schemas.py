@@ -19,6 +19,8 @@ class ActionResult(BaseModel):
     ok: bool
     message: str
     entry: dict[str, Any] | None = None
+    # updated/refreshed/unchanged：前端据此区分“已更新”与普通成功
+    code: str | None = None
 
 
 class EntryPayload(BaseModel):
@@ -26,6 +28,7 @@ class EntryPayload(BaseModel):
 
     values: dict[str, Any] = Field(default_factory=dict)
     remark: str | None = None
+    operator: str | None = None
 
 
 

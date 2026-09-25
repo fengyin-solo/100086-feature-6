@@ -85,3 +85,6 @@ desktop.ini
 *.db
 *.pid
 *.seed
+
+# 船舶档案修改留档的运行时快照
+backend/data/
