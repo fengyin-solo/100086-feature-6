@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Dashboard from '@/views/Dashboard.vue'
 const Berth = () => import('@/views/berth/index.vue')
 const Vessel = () => import('@/views/vessel/index.vue')
+const VesselDetail = () => import('@/views/vessel/detail.vue')
 const Voyage = () => import('@/views/voyage/index.vue')
 const Crane = () => import('@/views/crane/index.vue')
 const Loading = () => import('@/views/loading/index.vue')
@@ -26,6 +27,7 @@ const router = createRouter({
     { path: '/', name: 'dashboard', component: Dashboard },
     { path: '/berth', name: 'berth', component: Berth },
     { path: '/vessel', name: 'vessel', component: Vessel },
+    { path: '/vessel/:id', name: 'vessel-detail', component: VesselDetail },
     { path: '/voyage', name: 'voyage', component: Voyage },
     { path: '/crane', name: 'crane', component: Crane },
     { path: '/loading', name: 'loading', component: Loading },
@@ -43,6 +45,10 @@ const router = createRouter({
     { path: '/customer', name: 'customer', component: Customer },
     { path: '/settle', name: 'settle', component: Settle },
   ],
+  // 从详情返回列表时恢复之前的滚动位置，不跳回开头；进入新页面时回到顶部
+  scrollBehavior(_to, _from, savedPosition) {
+    return savedPosition ?? { top: 0 }
+  },
 })
 
 export default router

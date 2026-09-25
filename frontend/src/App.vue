@@ -13,7 +13,12 @@
         <span class="head-desc">面向船舶靠泊、集装箱装卸、堆场堆存、闸口进出与理货结算的一体化港口作业调度后台。</span>
         <span class="head-user">当前值班：{{ store.operator }} · {{ store.shiftLabel }}</span>
       </header>
-      <RouterView />
+      <RouterView v-slot="{ Component }">
+        <!-- 船舶列表缓存起来：从详情返回时筛选条件与滚动位置不丢 -->
+        <KeepAlive :include="['VesselList']">
+          <component :is="Component" />
+        </KeepAlive>
+      </RouterView>
     </main>
   </div>
 </template>
